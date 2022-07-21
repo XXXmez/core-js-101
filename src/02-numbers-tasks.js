@@ -213,14 +213,16 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-  let res = true;
-  for (let i = 2; i < n; i + 1) {
-    if (n % i === 0) {
-      res = false;
-      break; // выйдем из цикла
-    }
+  let num = n;
+  if (num < 0) {
+    num = -num;
   }
-  return res;
+  if (n < 4) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+  for (let i = 5, N = Math.sqrt(n); i <= N; i += 2) {
+    if (n % i === 0) return false;
+  }
+  return true;
 }
 
 /**
@@ -239,8 +241,9 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  if (value + 0) {
-    return value;
+  const v = parseInt(value, 10);
+  if (v) {
+    return v;
   }
   return def;
 }
