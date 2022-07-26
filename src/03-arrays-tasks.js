@@ -599,10 +599,11 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const s = Math.floor(arr.length / 2);
-  const head = arr.slice(0, s);
-  const tail = arr.slice(s, arr.length);
-  return head.concat(tail);
+  const middle = Math.floor(arr.length / 2);
+  const head = arr.slice(0, middle);
+  const tail = arr.slice(arr.length - middle);
+
+  return arr.length % 2 !== 0 ? tail.concat(arr[middle], head) : tail.concat(head);
 }
 
 
